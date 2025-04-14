@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .app {
   display: flex;
   flex-direction: column;
@@ -16,9 +18,16 @@
 }
 
 .navbar {
-  background-color: #333;
-  color: white;
-  padding: 10px;
+  background-color: #ffffff;
+  /* color: white; */
+  position: fixed;
+  width: 100%;
+  border-bottom: solid rgb(21, 24, 29) 1px;
+ 
+}
+.navbar h1{
+  color: #171717;
+  font-size: x-small;
 }
 
 .sidebar {
@@ -32,11 +41,7 @@
   margin-bottom: 10px;
 }
 
-button {
-  margin: 5px;
-  padding: 8px 12px;
-  cursor: pointer;
-}
+
 
 input {
   margin: 5px;
@@ -65,5 +70,65 @@ input {
   overflow-y: auto;
   background-color: #fff;
 }
+
+.custom-Login-button{
+  padding: 0.5rem 0.75rem;             /* px-3 py-2 */
+  font-size: 0.75rem;                  /* text-xs */
+  font-weight: 500;                    /* font-medium */
+  text-align: center;                  /* text-center */
+  color: rgba(255, 255, 255, 0.774);                        /* text-white */
+  background-color: #141111ef;           /* bg-blue-700 */
+  border-radius: 0.5rem;               /* rounded-lg */
+  outline: none;
+  margin-right: 20px;
+}
+
+/* custom-upload-button  */
+
+
+
+.custom-upload-button {
+  padding: 0.5rem 0.75rem;             /* px-3 py-2 */
+  font-size: 0.75rem;                  /* text-xs */
+  font-weight: 500;                    /* font-medium */
+  text-align: center;                  /* text-center */
+  color: white;                        /* text-white */
+  background-color: #1D4ED8;           /* bg-blue-700 */
+  border-radius: 0.5rem;               /* rounded-lg */
+  outline: none;
+}
+
+.custom-upload-button:hover {
+  background-color: #1E40AF;           /* hover:bg-blue-800 */
+}
+
+.custom-upload-button:focus {
+  outline: none;                       /* focus:outline-none */
+  box-shadow: 0 0 0 4px #93C5FD;       /* focus:ring-4 focus:ring-blue-300 */
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  .custom-upload-button {
+    background-color: #2563EB;         /* dark:bg-blue-600 */
+  }
+
+  .custom-upload-button:hover {
+    background-color: #1E3A8A;         /* dark:hover:bg-blue-700 */
+  }
+
+  .custom-upload-button:focus {
+    box-shadow: 0 0 0 4px #1E40AF;     /* dark:focus:ring-blue-800 */
+  }
+}
+
+
+.table-scroll-container {
+  max-height: calc(100vh - 150px); /* Adjust 150px based on your header/other content */
+  overflow-y: auto;
+  border: 1px solid #ccc;
+}
+
+
 
 /* Ensure sidebar.css takes precedence for Sidebar2 */

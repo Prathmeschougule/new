@@ -18,6 +18,7 @@ function App() {
           <Sidebar2 userId={userId} />
           <div className="content">
             <Routes>
+              
               <Route path="/" element={<Category userId={userId} />} />
               <Route path="/category/:categoryId" element={<Subcategory userId={userId} />} />
               <Route path="/subcategory/:subcategoryId" element={<DocumentUpload userId={userId} />} />

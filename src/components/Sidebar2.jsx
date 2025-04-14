@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
-
 import axios from 'axios';
 import '../sidebar.css';
 
@@ -12,7 +11,7 @@ const Sidebar2 = ({ userId }) => {
   const [newCategory, setNewCategory] = useState('');
   const [newSubcategory, setNewSubcategory] = useState({});
   const [selectedMenu, setSelectedMenu] = useState(null);
-  const [isOpen, setIsOpen] = useState(true);
+  const [activeModalCategory, setActiveModalCategory] = useState(null);
 
   useEffect(() => {
     fetchCategories();
@@ -20,24 +19,19 @@ const Sidebar2 = ({ userId }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get(`http://localhost/ProjectFile/backend/categories.php?user_id=${userId}`);
-      setCategories(response.data);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
+      const res = await axios.get(`http://localhost/ProjectFile/backend/categories.php?user_id=${userId}`);
+      setCategories(res.data);
+    } catch (err) {
+      console.error('Error fetching categories:', err);
     }
   };
 
   const fetchSubcategories = async (categoryId) => {
     try {
-      const response = await axios.get(
-        `http://localhost/ProjectFile/backend/subcategories.php?category_id=${categoryId}`
-      );
-      setSubcategories((prev) => ({
-        ...prev,
-        [categoryId]: response.data,
-      }));
-    } catch (error) {
-      console.error('Error fetching subcategories:', error);
+      const res = await axios.get(`http://localhost/ProjectFile/backend/subcategories.php?category_id=${categoryId}`);
+      setSubcategories((prev) => ({ ...prev, [categoryId]: res.data }));
+    } catch (err) {
+      console.error('Error fetching subcategories:', err);
     }
   };
 
@@ -50,8 +44,8 @@ const Sidebar2 = ({ userId }) => {
       });
       setNewCategory('');
       fetchCategories();
-    } catch (error) {
-      console.error('Error adding category:', error);
+    } catch (err) {
+      console.error('Error adding category:', err);
     }
   };
 
@@ -64,13 +58,13 @@ const Sidebar2 = ({ userId }) => {
         delete updated[id];
         return updated;
       });
-    } catch (error) {
-      console.error('Error deleting category:', error);
+    } catch (err) {
+      console.error('Error deleting category:', err);
     }
   };
 
   const addSubcategory = async (categoryId) => {
-    const name = newSubcategory[categoryId] || '';
+    const name = newSubcategory[categoryId];
     if (!name) return;
     try {
       await axios.post('http://localhost/ProjectFile/backend/subcategories.php', {
@@ -79,80 +73,98 @@ const Sidebar2 = ({ userId }) => {
       });
       setNewSubcategory((prev) => ({ ...prev, [categoryId]: '' }));
       fetchSubcategories(categoryId);
-    } catch (error) {
-      console.error('Error adding subcategory:', error);
+      setActiveModalCategory(null);
+    } catch (err) {
+      console.error('Error adding subcategory:', err);
     }
   };
 
-  const deleteSubcategory = async (categoryId, subcategoryId) => {
+  const deleteSubcategory = async (categoryId, subId) => {
     try {
-      await axios.delete(`http://localhost/ProjectFile/backend/subcategories.php?id=${subcategoryId}`);
+      await axios.delete(`http://localhost/ProjectFile/backend/subcategories.php?id=${subId}`);
       fetchSubcategories(categoryId);
-    } catch (error) {
-      console.error('Error deleting subcategory:', error);
+    } catch (err) {
+      console.error('Error deleting subcategory:', err);
     }
   };
 
-  const toggleMenu = (menu, categoryId) => {
-    if (selectedMenu === menu) {
+  const toggleMenu = (menuId, categoryId) => {
+    if (selectedMenu === menuId) {
       setSelectedMenu(null);
     } else {
-      setSelectedMenu(menu);
+      setSelectedMenu(menuId);
       fetchSubcategories(categoryId);
     }
   };
 
-
   return (
-    <div className='sidebar-Base'>
-      <div className="sidebar-header"> 
-       
-          <>
-            <input
-              type="text"
-              value={newCategory}
-              onChange={(e) => setNewCategory(e.target.value)}
-              placeholder="New Category"
-            />
-            <button className='add-Category' onClick={addCategory}>Add Category</button>
-          </>
-       
+    <div className='sidebar-Base mt-15'>
+      <div className="sidebar-header">
+        <input
+          type="text"
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          placeholder="New Category"
+        />
+        <button className='add-Category' onClick={addCategory}>Add Category</button>
       </div>
-     
-        <ul className="sidebar-menu">
-          {Array.isArray(categories) &&
-            categories.map((category) => (
-              <li key={category.id}>
-                <div className='Main-category-section'>
-                        
-                    <div className='main-category-name 'onClick={() => toggleMenu(`cat-${category.id}`, category.id)}>
-                        <a
-                        
-                        href="#"
-                        >
-                        {category.name} <span>{selectedMenu === `cat-${category.id}` ? '-' : '+'}</span>
-                        </a>
+
+      <ul className="sidebar-menu">
+        {categories.map((category) => (
+          <li key={category.id}>
+            <div className="Main-category-section">
+              <div className="main-category-name" onClick={() => toggleMenu(`cat-${category.id}`, category.id)}>
+              <span>{selectedMenu === `cat-${category.id}` ? '-' : '+'}</span> <span>{category.name} </span>
+              </div>
+              <div>
+                <button data-bs-toggle="dropdown" className="text-black pr-1" type="button">
+                  <BsThreeDotsVertical />
+                </button>
+                <ul className="dropdown-menu btn-category">
+                  <li>
+                    <button
+                      className="dropdown-item"
+                      onClick={() => setActiveModalCategory(category.id)}
+                    >
+                      Add Subcategory
+                    </button>
+                    <a
+                      className="dropdown-item cursor-pointer"
+                      onClick={() => deleteCategory(category.id)}
+                    >
+                      Delete Category
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            {selectedMenu === `cat-${category.id}` && (
+              <ul className="submenu">
+                {Array.isArray(subcategories[category.id]) &&
+                  subcategories[category.id].map((sub) => (
+                    <li key={sub.id}>
+                      <Link to={`/subcategory/${sub.id}`}>{sub.name}</Link>
+                      <button onClick={() => deleteSubcategory(category.id, sub.id)} className="delete-btn">
+                        <MdDelete />
+                      </button>
+                    </li>
+                  ))}
+              </ul>
+            )}
+
+            {/* Modal */}
+            {activeModalCategory === category.id && (
+              <div className="modal show d-block" tabIndex="-1">
+                <div className="modal-dialog">
+                  <div className="modal-content">
+                    <div className="modal-header">
+                      <h5 className="modal-title">Add Subcategory</h5>
+                      <button type="button" className="close" onClick={() => setActiveModalCategory(null)}>
+                        <span>&times;</span>
+                      </button>
                     </div>
-                    <div>
-                        <button className='main-category-deleteBtn'
-                        onClick={() => deleteCategory(category.id)}
-                        style={{ marginLeft: '10px', background: '#dc3545', color: 'white', border: 'none', padding: '5px 10px' }}
-                        >
-                          <MdDelete />                     
-                        </button>                       
-                        {/* <div >
-                          <button> 
-                            <BsThreeDotsVertical/>
-                        </button>  
-                        </div> */}
-                        
-                    </div>
-                   
-                    
-                </div>
-                {selectedMenu === `cat-${category.id}` && (
-                  <ul className="submenu" style={{ display: 'block', opacity: 1 }}>
-                    <li>
+                    <div className="modal-body">
                       <input
                         type="text"
                         value={newSubcategory[category.id] || ''}
@@ -162,43 +174,22 @@ const Sidebar2 = ({ userId }) => {
                             [category.id]: e.target.value,
                           }))
                         }
-                        placeholder="New Subcategory"
+                        className="form-control"
+                        placeholder="Enter Subcategory"
                       />
-                      <button onClick={() => addSubcategory(category.id)}>
-                        Add Subcategory
-                      </button>
-                    </li>
-                    {Array.isArray(subcategories[category.id]) &&
-                      subcategories[category.id].map((subcategory) => (
-                        <li key={subcategory.id}>
-                          <Link to={`/subcategory/${subcategory.id}`}>
-                            {subcategory.name}
-                          </Link>
-                          <button
-                            onClick={() => deleteSubcategory(category.id, subcategory.id)}
-                            style={{
-                              marginLeft: '10px',
-                              background: '#dc3545',
-                              color: 'white',
-                              border: 'none',
-                              padding: '5px 10px',
-                            }}
-                          >
-                            Delete
-                          </button>
-                        </li>
-                      ))}
-                  </ul>
-                )}
-              </li>
-            ))}
-        </ul>
-
-        
-            
+                    </div>
+                    <div className="modal-footer">
+                      <button type="button" className="btn btn-secondary" onClick={() => setActiveModalCategory(null)}>Close</button>
+                      <button type="button" className="btn btn-primary" onClick={() => addSubcategory(category.id)}>Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </li>
+        ))}
+      </ul>
     </div>
-
-
   );
 };
 
