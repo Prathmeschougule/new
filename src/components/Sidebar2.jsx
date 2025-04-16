@@ -14,8 +14,11 @@ const Sidebar2 = ({ userId }) => {
   const [activeModalCategory, setActiveModalCategory] = useState(null);
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    if (userId) {
+      fetchCategories();
+    }
+  }, [userId]);
+  
 
   const fetchCategories = async () => {
     try {
@@ -144,7 +147,7 @@ const Sidebar2 = ({ userId }) => {
                 {Array.isArray(subcategories[category.id]) &&
                   subcategories[category.id].map((sub) => (
                     <li key={sub.id}>
-                      <Link to={`/subcategory/${sub.id}`}>{sub.name}</Link>
+                      <Link to={`subcategory/${sub.id}`}>{sub.name}</Link>
                       <button onClick={() => deleteSubcategory(category.id, sub.id)} className="delete-btn">
                         <MdDelete />
                       </button>

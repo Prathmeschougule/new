@@ -1,5 +1,6 @@
 import React from 'react';
 import '../App.css'
+import { Link} from 'react-router-dom'
 
 function Navbar() {
   return (
@@ -8,10 +9,8 @@ function Navbar() {
           <p className='m-0 pl-4'>File Mangment</p>
       </div>
       <div>
-        <button className='custom-Login-button'>Log Out</button>
-      </div>
-
-      
+      <Link to={"/login"}> <button className='custom-Login-button'>Log Out</button> </Link>
+      </div>     
     </div>
   );
 }

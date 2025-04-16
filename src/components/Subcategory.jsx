@@ -44,7 +44,6 @@ function Subcategory({ userId }) {
       console.error('Error deleting subcategory:', error);
     }
   };
-
   return (
     <div>
       <h2>Subcategories</h2>
@@ -58,7 +57,7 @@ function Subcategory({ userId }) {
       <ul>
         {subcategories.map((subcategory) => (
           <li key={subcategory.id} className="subcategory">
-            <Link to={`/subcategory/${subcategory.id}`}>{subcategory.name}</Link>
+            <Link to={`/home/subcategory/${subcategory.id}`}>{subcategory.name}</Link>
             <button onClick={() => deleteSubcategory(subcategory.id)}>Delete</button>
           </li>
         ))}

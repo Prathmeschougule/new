@@ -1,0 +1,19 @@
+.layout-container {
+    display: flex;  /* Enables side-by-side layout */
+    height: 100vh;
+}
+
+.sidebar {
+    width: 250px;
+    background-color: #0e2238;
+    color: white;
+    padding: 20px;
+}
+
+.content-area {
+    flex-grow: 1; /* Takes the remaining space */
+    /* Moves it 20% from the left */
+    margin-top: 50px; /* Moves it 50px from the top */
+    padding: 5px;
+    background-color: #f4f4f4;
+}

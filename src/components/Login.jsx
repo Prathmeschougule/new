@@ -1,0 +1,76 @@
+// Login.jsx
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+function Login({ setUserId }) {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = async (e) => {
+        e.preventDefault();
+    
+        try {
+            const response = await fetch('http://localhost/ProjectFile/backend/login.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (data.success) {
+                localStorage.setItem('userId', data.userId);
+                localStorage.setItem('role', data.role);
+    
+                setUserId(data.userId);
+    
+                if (data.role === 'admin') {
+                    navigate('/admin');
+                } else {
+                    navigate('/home');
+                }
+            } else {
+                alert(data.message || 'Invalid credentials');
+            }
+        } catch (error) {
+            console.error('Login failed:', error);
+            alert('Server error occurred.');
+        }
+    };
+    
+
+
+
+    return (
+        <form className='mt-40' onSubmit={handleLogin}>
+            <div className="form-outline mb-1">
+                <label className="form-label" htmlFor="email">Email address</label>
+                <input
+                    type="email"
+                    id="email"
+                    className="form-control"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-outline mb-4">
+                <label className="form-label" htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    className="form-control"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    required
+                />
+            </div>
+            <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
+        </form>
+    );
+}
+
+export default Login;

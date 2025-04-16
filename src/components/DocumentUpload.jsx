@@ -79,14 +79,13 @@ function DocumentUpload({ userId }) {
   };
 
   return (
-    <div className='document-upload-container  m-15'>
+    <div className='document-upload-container m-15'>
       <div className='flex items-center justify-between '>
-        <div >
+        <div>
           <h4>Document</h4>
         </div>
 
         <div>
-
           <input
             id="fileInput"
             type="file"
