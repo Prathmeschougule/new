@@ -1,6 +1,7 @@
 // Login.jsx
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import '../App.css'
 
 function Login({ setUserId }) {
     const [email, setEmail] = useState('');
@@ -45,6 +46,12 @@ function Login({ setUserId }) {
 
 
     return (
+<>
+        <nav>
+            <div className='login-nav-bar'>
+                    <p>File Managment </p>
+            </div>
+        </nav>
         <form className='mt-40' onSubmit={handleLogin}>
             <div className="form-outline mb-1">
                 <label className="form-label" htmlFor="email">Email address</label>
@@ -70,6 +77,7 @@ function Login({ setUserId }) {
             </div>
             <button type="submit" className="btn btn-primary btn-block mb-4">Sign in</button>
         </form>
+</>
     );
 }
 

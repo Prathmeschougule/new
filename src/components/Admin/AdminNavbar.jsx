@@ -15,13 +15,10 @@ function AdminNavbar() {
 
   return (
     <>
-    <nav className="bg-yellow-50 border z-50  border-gray-600 ">
-
-      
-
+     <nav className="bg-white border border-gray-600 fixed top-0 left-0 w-full z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a  className=" text-decoration-none flex items-center space-x-3 rtl:space-x-reverse">
-            <h2 className='text-decoration-none'>Admin Dashbord</h2>    
+            {/* <h className='text-decoration-none'>Admin Dashbord</h2>     */}
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button

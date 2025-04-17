@@ -1,22 +1,55 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams ,Link} from 'react-router-dom';
 
 function AdminSubcategory() {
-  return (
-    <div className='dash-bord'>
+    const { categoryId } = useParams();
+    const [subcategories, setSubcategories] = useState([]);
 
-        <div>
-            <p>Sub Category</p>
+    useEffect(() => {
+        fetch(`http://localhost/ProjectFile/backend/getSubcategoriesByCategory.php?category_id=${categoryId}`)
+            .then(response => response.json())
+            .then(data => {
+                if (Array.isArray(data)) {
+                    setSubcategories(data);
+                } else {
+                    console.error("Error fetching subcategories:", data);
+                }
+            })
+            .catch(error => console.error("Error:", error));
+    }, [categoryId]);
+
+    return (
+        <div className='dash-bord p-4'>
+            <h2 className='text-xl font-bold mb-4'>Subcategories for Category ID: {categoryId}</h2>
+
+            {subcategories.length > 0 ? (
+                <table className="table-auto w-full border">
+                    <thead>
+                        <tr className='bg-gray-200'>
+                            {/* <th className='border px-4 py-2'>ID</th> */}
+                            <th className='border px-4 py-2'>Folder Name</th>
+                            <th className='border px-4 py-2'>Created At</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {subcategories.map((sub) => (
+                            <tr key={sub.id}>
+                                {/* <td className='border px-4 py-2'>{sub.id}</td> */}
+                                <td className='border px-4 py-2'>
+                                    <Link to={`documents/${sub.id}`} className="text-blue-600 underline">
+                                        {sub.name}
+                                    </Link>
+                                </td>
+                                <td className='border px-4 py-2'>{sub.created_at}</td>
+                            </tr>
+                        ))}
+                    </tbody>
+                </table>
+            ) : (
+                <p>No subcategories found for this category.</p>
+            )}
         </div>
-        <div className='row gap-4'>
-            <div className="card col-lg-4 ">         
-                <div className="card-body flex justify-between items-center">
-                    <h5 className="card-title">Forest</h5>               
-                    <a href="#" className="btn btn-primary">Go</a>
-                </div>
-            </div>        
-        </div>
-    </div>
-  )
+    );
 }
 
-export default AdminSubcategory
+export default AdminSubcategory;

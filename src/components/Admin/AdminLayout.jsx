@@ -6,10 +6,10 @@ import AdminSidebar from './AdminSidebar';
 
 function AdminLayout() {
     return (
-        <div className="admin-panel">
+        <div >
             <AdminNavbar/>
             <AdminSidebar/>
-            <div className="admin-content">
+            <div >
                 <Outlet />
             </div>
         </div>

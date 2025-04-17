@@ -14,6 +14,7 @@ import Maincategory from './components/Admin/Maincategory';
 import AdminLayout from './components/Admin/AdminLayout';
 import Adminshbord from './components/Admin/Adminshbord';
 import AdminSubcategory from './components/Admin/AdminSubcategory';
+import AdminDocuments from './components/Admin/AdminDocuments';
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -26,11 +27,12 @@ function App() {
     }
   }, []);
 
+    
   return (
     <Router>
       <div className="app">
-        {/* <AdminNavbar/> */}
-        <Navbar />
+       
+        {/* <Navbar /> */}
         <div className="main-content">
           {/* <Sidebar2 userId={userId} /> */}
           <div className="content">
@@ -46,9 +48,10 @@ function App() {
 
               <Route path="/admin" element={<AdminLayout/>}>
                 <Route index element={<Adminshbord/>} />
-                <Route path='maincategory' element={<Maincategory/>}/>
-                <Route path="registration" element={<RegistrationNewUser/>} />
-                <Route path="/admin/adminsub" element={<AdminSubcategory />} />
+                <Route path='maincategory/:userId' element={<Maincategory/>}/>
+                <Route path="maincategory/:userId/adminsub/:categoryId" element={<AdminSubcategory />} />
+                <Route path="maincategory/:userId/adminsub/:categoryId/documents/:subcategoryId" element={<AdminDocuments/>} />
+                <Route path="registration" element={<RegistrationNewUser/>}/>
                 {/* Add more admin pages here */}
               </Route>
             </Routes> 

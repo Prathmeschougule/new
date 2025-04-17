@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 
 function Adminshbord() {
   return (
-    <div className='dash-bord'>
+    <div className='dash-bord toppage '>
         <div className="adduser justify-items-end">
        <Link to={"registration"}> <button className='btn btn-primary'>Add New User </button></Link>
       </div>
