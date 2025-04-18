@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams ,Link} from 'react-router-dom';
+import { FaFolderOpen } from "react-icons/fa";
 
 function AdminSubcategory() {
     const { categoryId } = useParams();
@@ -26,7 +27,7 @@ function AdminSubcategory() {
                 <table className="table-auto w-full border">
                     <thead>
                         <tr className='bg-gray-200'>
-                            {/* <th className='border px-4 py-2'>ID</th> */}
+                            {/* <th className='border px-4 py-2'>File</th> */}
                             <th className='border px-4 py-2'>Folder Name</th>
                             <th className='border px-4 py-2'>Created At</th>
                         </tr>
@@ -34,12 +35,12 @@ function AdminSubcategory() {
                     <tbody>
                         {subcategories.map((sub) => (
                             <tr key={sub.id}>
-                                {/* <td className='border px-4 py-2'>{sub.id}</td> */}
-                                <td className='border px-4 py-2'>
-                                    <Link to={`documents/${sub.id}`} className="text-blue-600 underline">
-                                        {sub.name}
-                                    </Link>
-                                </td>
+                                {/* <td className='border px-4  py-2'><FaFolderOpen/></td> */}
+                                <Link to={`documents/${sub.id}`} className=" text-decoration-none"> 
+                                <td className=' text-[#202020] border px-4 py-2 flex justify-start  items-center gap-2'>
+                                    <FaFolderOpen className='text-yellow-600'/>
+                                     {sub.name}                     
+                                </td>  </Link>
                                 <td className='border px-4 py-2'>{sub.created_at}</td>
                             </tr>
                         ))}

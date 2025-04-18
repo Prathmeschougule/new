@@ -5,6 +5,8 @@ import Maincategory from './Maincategory';
 import Subcategory from '../Subcategory';
 import AdminSubcategories from './AdminSubcategory';
 import RegistrationNewUser from './RegistrationNewUser';
+import { FaUserCircle } from "react-icons/fa";
+import { Link } from 'react-router';
 
 function AdminNavbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,8 +19,8 @@ function AdminNavbar() {
     <>
      <nav className="bg-white border border-gray-600 fixed top-0 left-0 w-full z-20">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
-        <a  className=" text-decoration-none flex items-center space-x-3 rtl:space-x-reverse">
-            {/* <h className='text-decoration-none'>Admin Dashbord</h2>     */}
+        <a  className=" text-decoration-none  flex  items-center space-x-3 rtl:space-x-reverse">
+          <Link to={"/admin"}>  <p className='text-decoration-none mt-2  cursor-pointer'>Admin Dashbord</p> </Link>   
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button
@@ -28,7 +30,7 @@ function AdminNavbar() {
             aria-expanded={dropdownOpen}
           >
             <span className="sr-only">Open user menu</span>
-            <img className="w-8 h-8 rounded-full" src="https://flowbite.com/docs/images/people/profile-picture-3.jpg" alt="user" />
+            <FaUserCircle  className='text-3xl text-blue-600'/>
           </button>
 
           {dropdownOpen && (
@@ -36,7 +38,7 @@ function AdminNavbar() {
               
               <ul className="py-0">      
                 <li>
-                  <a href="#" className="block px-0 py-0 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign out</a>
+                <Link to={"/login"}>  <a href="#" className="block px-0 py-0 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign out</a></Link>
                 </li>
               </ul>
             </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import '../Admin/admin.css';
 
 function AdminSidebar() {
   const [users, setUsers] = useState([]);
@@ -46,5 +47,6 @@ function AdminSidebar() {
     </div>
   );
 }
+
 
 export default AdminSidebar;

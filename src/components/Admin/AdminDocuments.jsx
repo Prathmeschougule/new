@@ -25,7 +25,7 @@ function AdminDocuments() {
         <table className="table-auto w-full border">
           <thead>
             <tr className='bg-gray-200'>
-              <th className='border px-4 py-2'>ID</th>
+              {/* <th className='border px-4 py-2'>ID</th> */}
               <th className='border px-4 py-2'>Document Name</th>
               <th className='border px-4 py-2'>Created At</th>
               <th className='border px-4 py-2'>Download</th>
@@ -34,7 +34,7 @@ function AdminDocuments() {
           <tbody>
             {documents.map(doc => (
               <tr key={doc.id}>
-                <td className='border px-4 py-2'>{doc.id}</td>
+                {/* <td className='border px-4 py-2'>{doc.id}</td> */}
                 <td className='border px-4 py-2'>{doc.name}</td>
                 <td className='border px-4 py-2'>{doc.created_at}</td>
                 <td className='border px-4 py-2'>

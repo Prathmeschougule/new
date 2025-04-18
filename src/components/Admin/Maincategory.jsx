@@ -21,36 +21,27 @@ function Maincategory({ users }) {
   }, [userId]);
 
   return (
-    <div className='ml-50 mt-12 p-4'>
-      <p className='text-xl font-bold '>Categories Folders</p>
+    <div className=' ml-50 mt-10 px-4 py-6 md:px-8 lg:px-20'>
+      <p className='text-xl font-bold mb-6 text-left md:text-left'>Categories Folders</p>
 
       {categories.length > 0 ? (
-
-        <div className='row gap-3 '>
+        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>
           {categories.map((category) => (
-
-            <div key={category.id} className="card col-lg-12  ">
-              {/* <td className='border px-4 py-2'>{category.id}</td> */}
-              <Link to={`adminsub/${category.id}`} className='xyxe' >
-                <div className="card-body flex justify-start gap-2">
-                  <FaFolderOpen className="text-4xl text-neutral-600" />
-                  <p className="categoryName card-title mt-2 ">{category.name}</p>
-                </div>
-              </Link>
-
-            </div>
-
+            <Link
+              to={`adminsub/${category.id}`}
+              key={category.id}
+              className='bg-white shadow-md rounded-xl p-4 hover:bg-gray-100 transition duration-300 ease-in-out categoryName'
+            >
+              <div className='flex items-center gap-3'>
+                <FaFolderOpen className=' text-3xl text-yellow-600' />
+                <p className=' mt-3 text-md font-medium truncate'>{category.name}</p>
+              </div>
+            </Link>
           ))}
         </div>
-
       ) : (
-        <p>No categories found for this user.</p>
+        <p className='text-center text-gray-500 mt-8'>No categories found for this user.</p>
       )}
-
-
-
-
-
     </div>
   );
 }
