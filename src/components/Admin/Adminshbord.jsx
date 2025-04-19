@@ -18,7 +18,7 @@ function Adminshbord() {
   }, []);
 
   return (
-    <div className='dash-bord p-4 md:p-8'>
+    <div className='p-4 md:p-8'>
       <div className="adduser text-right mb-6">
         <Link to="registration">
           <button className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow'>

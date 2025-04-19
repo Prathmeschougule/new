@@ -4,7 +4,7 @@ import { Link} from 'react-router-dom'
 
 function UserNavbar() {
   return (
-    <div className='navbar'>
+    <div className='navbar '>
       <div >
           <p className='m-0 pl-4'>File Mangment</p>
       </div>

@@ -30,12 +30,12 @@ function App() {
     
   return (
     <Router>
-      <div className="app">
+      <div className="">
        
         {/* <Navbar /> */}
-        <div className="main-content">
+        <div className="">
           {/* <Sidebar2 userId={userId} /> */}
-          <div className="content">
+          <div className="">
 
             <Routes>
               <Route path="/login" element={<Login setUserId={setUserId} />} />

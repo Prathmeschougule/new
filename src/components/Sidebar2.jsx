@@ -101,7 +101,7 @@ const Sidebar2 = ({ userId }) => {
   };
 
   return (
-    <div className='sidebar-Base mt-15'>
+    <div className='sidebar-Base'>
       <div className="sidebar-header">
         <input
           type="text"

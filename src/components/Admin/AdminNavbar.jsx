@@ -17,7 +17,7 @@ function AdminNavbar() {
 
   return (
     <>
-     <nav className="bg-white border border-gray-600 fixed top-0 left-0 w-full z-20">
+     <nav className="bg-white border border-gray-600">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a  className=" text-decoration-none  flex  items-center space-x-3 rtl:space-x-reverse">
           <Link to={"/admin"}>  <p className='text-decoration-none mt-2  cursor-pointer'>Admin Dashbord</p> </Link>   

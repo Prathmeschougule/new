@@ -20,9 +20,10 @@
 .navbar {
   background-color: #ffffff;
   /* color: white; */
-  position: fixed;
-  width: 100%;
+  /* position: fixed; */
+  /* width: 100%; */
   border-bottom: solid rgb(21, 24, 29) 1px;
+  
  
 }
 .navbar h1{
@@ -144,8 +145,22 @@ input {
   font-weight: 600;
   z-index: 1000;
 }
+.searchbar{
+  width: 40%;
+}
 
+.DwonloadBtn{
+  background: green;
+}
 
+.DwonloadBtn:hover{
+  background-color: rgb(2, 102, 2);
+}
 
-
+.deleteBtn {
+  background: rgb(231, 60, 60);
+}
+.deleteBtn:hover {
+  background-color: rgb(236, 52, 52);
+}
 /* Ensure sidebar.css takes precedence for Sidebar2 */

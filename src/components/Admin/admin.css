@@ -1,6 +1,6 @@
 .sidebar-admin {
   position: fixed;
-  margin-top: 59px;
+  /* margin-top: 59px; */
   top: 0;
   left: 0;
   height: 100vh;
@@ -47,11 +47,10 @@
 
 
 /* Container for the sidebar */
-.sidebar-admin {
-  padding: 16px;
+.sibarcss{
   background-color: #f8f9fa;
-  height: 100vh;
-  width: 200px;
+  /* height: 100vh; */
+  width: 250px;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -63,7 +62,7 @@
 }
 
 /* For each user link */
-.sidebar-admin .user-link {
+.sibarcss .user-link {
   display: block;
   text-align: left;
   padding: 4px 5px;
@@ -75,13 +74,13 @@
 }
 
 /* Hover effect for each user link */
-.sidebar-admin .user-link:hover {
+.sibarcss .user-link:hover {
 background-color: #c1e3ff;
 color: #000;
 }
 
 /* Active link style */
-.sidebar-admin .user-link.active {
+.sibarcss.user-link.active {
 background-color: #3968eb; 
 color: white;
 }

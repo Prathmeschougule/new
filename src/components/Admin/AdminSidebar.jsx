@@ -28,7 +28,7 @@ function AdminSidebar() {
   }, [location]);
 
   return (
-    <div className='sidebar-admin'>
+    <div className='sibarcss'>
       <div>
         <p className='user-name'>All Users</p>
       </div>
