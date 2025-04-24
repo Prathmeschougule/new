@@ -7,6 +7,8 @@ import AdminSubcategories from './AdminSubcategory';
 import RegistrationNewUser from './RegistrationNewUser';
 import { FaUserCircle } from "react-icons/fa";
 import { Link } from 'react-router';
+import '../Admin/admin.css'
+// import '../Admin/admin.css'
 
 function AdminNavbar() {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -17,10 +19,10 @@ function AdminNavbar() {
 
   return (
     <>
-     <nav className="bg-white border border-gray-600">
+     <nav className="adminnav  bg-white ">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto ">
         <a  className=" text-decoration-none  flex  items-center space-x-3 rtl:space-x-reverse">
-          <Link to={"/admin"}>  <p className='text-decoration-none mt-2  cursor-pointer'>Admin Dashbord</p> </Link>   
+          <Link to={"/admin"}>  <p className='text-decoration-none mt-2 text-2xl  cursor-pointer text-neutral-800 font-bold'>Admin Panel</p> </Link>   
         </a>
         <div className="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
           <button

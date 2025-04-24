@@ -20,7 +20,7 @@ function AdminDocuments() {
    
   return (
     <div className="p-4 dash-bord">
-      <h2 className="text-xl font-bold mb-4">Documents for Subcategory ID: {subcategoryId}</h2>
+      {/* <h2 className="text-xl font-bold mb-4">Documents for Subcategory ID: {subcategoryId}</h2> */}
       {documents.length > 0 ? (
         <table className="table-auto w-full border">
           <thead>

@@ -21,8 +21,21 @@ function Maincategory({ users }) {
   }, [userId]);
 
   return (
-    <div className=' ml-50 mt-10 px-4 py-6 md:px-8 lg:px-20'>
-      <p className='text-xl font-bold mb-6 text-left md:text-left'>Categories Folders</p>
+    <div className='  px-4 py-6 md:px-8 lg:px-20'>
+      <div className='flex justify-between items-center'>
+        <div>
+          <p className='text-xl font-bold mb-6 text-left md:text-left'>Categories Folders</p>
+        </div>
+        <div className=''>
+          <button
+            onClick={() => window.open(`http://localhost/ProjectFile/backend/downloadAllDocuments.php?user_id=${userId}`, '_blank')}
+            className='export mb-4  text-white px-4 py-2 rounded'
+          >
+            Download All as ZIP
+          </button>
+        </div>
+      </div>
+
 
       {categories.length > 0 ? (
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4'>

@@ -1,28 +1,28 @@
-// components/Admin/AdminLayout.jsx
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-import { useState } from 'react';
 import AdminNavbar from './AdminNavbar';
 import AdminSidebar from './AdminSidebar';
-import { FaBars } from "react-icons/fa";
 
 function AdminLayout() {
-
-
     return (
+        <div>
+            {/* Fixed Navbar */}
+            <div className="fixed top-0 left-0 w-full z-50">
+                <AdminNavbar />
+            </div>
 
+            <div className="flex">
+                {/* Fixed Sidebar below the Navbar */}
+                <div className="fixed top-10 left-0 h-full w-64 bg-white shadow z-40">
+                    <AdminSidebar />
+                </div>
 
-        <div >
-            <AdminNavbar />
-            <div className='flex'>
-                <AdminSidebar />
-                <main className="flex-1 p-4">
+                {/* Main Content area */}
+                <main className="ml-64 mt-10 p-2 w-full">
                     <Outlet />
                 </main>
-            </div>   
+            </div>
         </div>
-
-
     );
 }
 

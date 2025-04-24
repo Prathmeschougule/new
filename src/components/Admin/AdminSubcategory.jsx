@@ -20,8 +20,8 @@ function AdminSubcategory() {
     }, [categoryId]);
 
     return (
-        <div className='dash-bord p-4'>
-            <h2 className='text-xl font-bold mb-4'>Subcategories for Category ID: {categoryId}</h2>
+        <div className=' p-4'>
+            {/* <h2 className='text-xl font-bold mb-4'>Subcategories for Category ID: {categoryId}</h2> */}
 
             {subcategories.length > 0 ? (
                 <table className="table-auto w-full border">

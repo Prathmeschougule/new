@@ -38,6 +38,7 @@ function App() {
           <div className="">
 
             <Routes>
+              <Route path='' element={<Login setUserId={setUserId}/>}/>
               <Route path="/login" element={<Login setUserId={setUserId} />} />
               <Route path="/home" element={<Layout userId={userId} />}>
                 <Route index element={<Category userId={userId} />} />

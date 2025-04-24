@@ -12,18 +12,10 @@
 
 .user-name {
   text-align: center;
-  margin-top: 20px;
+  margin-top: 15px;
+ 
 }
 
-.dash-bord {
-  margin-left: 200px; 
-  margin-top: 50px;
-  /* exactly the width of sidebar */
-  padding: 20px;
-  height:auto;
-  background: #ffffffee;
-  /* background: red; */
-}
 .box{
   text-align: center;
   height: 100px;
@@ -48,17 +40,21 @@
 
 /* Container for the sidebar */
 .sibarcss{
-  background-color: #f8f9fa;
-  /* height: 100vh; */
+  /* background-color: #a8cef5; */
+  position: Sta;
+  height: 90vh;
   width: 250px;
+  border-right: solid 1px #252525;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
 }
 
 /* Title of the sidebar */
 .user-name {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: bold;
-  color: #333;
+  color: #ffffff;
+  padding: 4px;
+  background: #252525;
 }
 
 /* For each user link */
@@ -98,4 +94,11 @@ text-decoration: none;
 }
 .xyxe:hover{
   text-decoration:none;
+}
+.export{
+  background:  #252525
+}
+
+.adminnav{
+  border-bottom: #252525 solid 1px;
 }

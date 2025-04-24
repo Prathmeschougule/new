@@ -53,8 +53,8 @@ function Login({ setUserId }) {
         </div>
       </nav>
       
-          <div className="min-h-screen flex items-center justify-center border ">
-            <form className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md" onSubmit={handleLogin}>
+          <div className="  min-h-screen flex items-center justify-center">
+            <form className= " loginpage bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4 w-full max-w-md" onSubmit={handleLogin}>
               <div className="form-outline mb-4">
                 <label className="form-label block mb-2" htmlFor="email">Email address</label>
                 <input

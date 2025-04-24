@@ -2,8 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdDelete } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
+import Modal from './Modal'; // 👈 Import the portal-based modal
+import './Modal.css';        // 👈 Import the modal style
+
 import axios from 'axios';
 import '../sidebar.css';
+
 
 const Sidebar2 = ({ userId }) => {
   const [categories, setCategories] = useState([]);
@@ -18,7 +22,7 @@ const Sidebar2 = ({ userId }) => {
       fetchCategories();
     }
   }, [userId]);
-  
+
 
   const fetchCategories = async () => {
     try {
@@ -117,7 +121,7 @@ const Sidebar2 = ({ userId }) => {
           <li key={category.id}>
             <div className="Main-category-section">
               <div className="main-category-name" onClick={() => toggleMenu(`cat-${category.id}`, category.id)}>
-              <span>{selectedMenu === `cat-${category.id}` ? '-' : '+'}</span> <span>{category.name} </span>
+                <span>{selectedMenu === `cat-${category.id}` ? '-' : '+'}</span> <span>{category.name} </span>
               </div>
               <div>
                 <button data-bs-toggle="dropdown" className="text-black pr-1" type="button">
@@ -157,38 +161,29 @@ const Sidebar2 = ({ userId }) => {
             )}
 
             {/* Modal */}
-            {activeModalCategory === category.id && (
-              <div className="modal show d-block" tabIndex="-1">
-                <div className="modal-dialog">
-                  <div className="modal-content">
-                    <div className="modal-header">
-                      <h5 className="modal-title">Add Subcategory</h5>
-                      <button type="button" className="close" onClick={() => setActiveModalCategory(null)}>
-                        <span>&times;</span>
-                      </button>
-                    </div>
-                    <div className="modal-body">
-                      <input
-                        type="text"
-                        value={newSubcategory[category.id] || ''}
-                        onChange={(e) =>
-                          setNewSubcategory((prev) => ({
-                            ...prev,
-                            [category.id]: e.target.value,
-                          }))
-                        }
-                        className="form-control"
-                        placeholder="Enter Subcategory"
-                      />
-                    </div>
-                    <div className="modal-footer">
-                      <button type="button" className="btn btn-secondary" onClick={() => setActiveModalCategory(null)}>Close</button>
-                      <button type="button" className="btn btn-primary" onClick={() => addSubcategory(category.id)}>Add</button>
-                    </div>
-                  </div>
-                </div>
+            <Modal
+              isOpen={activeModalCategory === category.id}
+              onClose={() => setActiveModalCategory(null)}
+            >
+              <h5 className="modal-title">Add Subcategory</h5>
+              <input
+                type="text"
+                value={newSubcategory[category.id] || ''}
+                onChange={(e) =>
+                  setNewSubcategory((prev) => ({
+                    ...prev,
+                    [category.id]: e.target.value,
+                  }))
+                }
+                className="form-control my-3"
+                placeholder="Enter Subcategory"
+              />
+              <div className="text-end">
+                <button className="btn btn-secondary me-2" onClick={() => setActiveModalCategory(null)}>Close</button>
+                <button className="btn btn-primary" onClick={() => addSubcategory(category.id)}>Add</button>
               </div>
-            )}
+            </Modal>
+
           </li>
         ))}
       </ul>

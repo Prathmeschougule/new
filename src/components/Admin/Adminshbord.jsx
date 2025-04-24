@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 
 function Adminshbord() {
   const [totalUsers, setTotalUsers] = useState(0);
+  const[totalDocument ,setTotalDocument] = useState(0);
+  const[totalCategory , setTotalCategory ] = useState(0);
 
   useEffect(() => {
     fetch('http://localhost/ProjectFile/backend/get_total_users.php')
@@ -16,6 +18,35 @@ function Adminshbord() {
       })
       .catch((err) => console.error("Error fetching total users:", err));
   }, []);
+
+  useEffect(() => {
+    fetch('http://localhost/ProjectFile/backend/get_total_document.php')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setTotalDocument(data.total_document);
+        } else {
+          console.error(data.message);
+        }
+      })
+      .catch((err) => console.error("Error fetching total users:", err));
+  }, []);
+  
+
+
+  useEffect(() => {
+    fetch('http://localhost/ProjectFile/backend/get_total_category.php')
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          setTotalCategory(data.total_category);
+        } else {
+          console.error(data.message);
+        }
+      })
+      .catch((err) => console.error("Error fetching total users:", err));
+  }, []);
+
 
   return (
     <div className='p-4 md:p-8'>
@@ -34,13 +65,13 @@ function Adminshbord() {
         </div>
 
         <div className='box border rounded-2xl text-center hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out bg-white'>
-          <p className='font-semibold text-lg md:text-xl'>Total Documents</p>
-          <p className='text-green-600 text-2xl md:text-3xl font-bold'>5</p>
+          <p className='font-semibold text-lg md:text-xl'>Total Document</p>
+          <p className='text-green-600 text-2xl md:text-3xl font-bold'>{totalDocument}</p>
         </div>
 
         <div className='box border rounded-2xl  text-center hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out bg-white'>
           <p className='font-semibold text-lg md:text-xl'>Total Categories</p>
-          <p className='text-purple-600 text-2xl md:text-3xl font-bold'>5</p>
+          <p className='text-purple-600 text-2xl md:text-3xl font-bold'>{totalCategory}</p>
         </div>
       </div>
     </div>

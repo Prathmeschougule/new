@@ -7,6 +7,7 @@ function RegistrationNewUser() {
     phone: '',
     email: '',
     password: '',
+    role: 'user',
   });
 
   const handleChange = (e) => {
@@ -44,6 +45,18 @@ function RegistrationNewUser() {
       if (res.data && typeof res.data === "object") {
         if (res.data.success !== undefined && res.data.message) {
           alert(res.data.message);
+          
+          // Clear the form on successful registration
+          setFormData({
+            username: '',
+            phone: '',
+            email: '',
+            password: '',
+            role: 'user',
+          });
+
+          // Reload the page after successful registration
+          window.location.reload();
         } else {
           alert("Unexpected response format from server.");
         }
