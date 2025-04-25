@@ -17,6 +17,14 @@ function AdminNavbar() {
     setDropdownOpen(!dropdownOpen);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem('userId');
+    localStorage.removeItem('role');
+    window.location.href = '/login';
+  };
+  
+  
+
   return (
     <>
      <nav className="adminnav  bg-white ">
@@ -40,7 +48,11 @@ function AdminNavbar() {
               
               <ul className="py-0">      
                 <li>
-                <Link to={"/login"}>  <a href="#" className="block px-0 py-0 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign out</a></Link>
+                <Link to={"/login"}>  
+                    
+                    <a onClick={handleLogout}
+                     href="#" className="block px-0 py-0 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-200 dark:hover:bg-gray-600">Sign out</a></Link>
+
                 </li>
               </ul>
             </div>

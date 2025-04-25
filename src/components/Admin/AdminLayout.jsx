@@ -18,7 +18,7 @@ function AdminLayout() {
                 </div>
 
                 {/* Main Content area */}
-                <main className="ml-64 mt-10 p-2 w-full">
+                <main className="ml-64 mt-12 p-2 w-full">
                     <Outlet />
                 </main>
             </div>

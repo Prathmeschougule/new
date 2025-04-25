@@ -50,13 +50,25 @@ function Adminshbord() {
 
   return (
     <div className='p-4 md:p-8'>
-      <div className="adduser text-right mb-6">
-        <Link to="registration">
-          <button className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow'>
-            Add New User
-          </button>
-        </Link>
-      </div>
+
+     <div className='flex justify-end gap-2'>
+
+
+          <div  className="adduser">
+          <Link to={"updateUser"}> <button className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow'>
+                  Update User 
+                </button></Link> 
+            </div>
+
+            <div className="adduser  mb-6">
+              <Link to="registration">
+                <button className='btn btn-primary bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md shadow'>
+                  Add New User
+                </button>
+              </Link>
+            </div>
+     </div>
+      
 
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-0'>
         <div className='box border rounded-2xl  text-center hover:shadow-xl hover:scale-105 transition duration-300 ease-in-out bg-white'>
