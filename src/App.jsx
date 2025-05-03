@@ -52,7 +52,7 @@ function App() {
         </Route>
 
         {/* ✅ Catch-all Route — Redirect unknown URLs to /login */}
-        <Route path="*" element={<Navigate to="/login" replace />} />
+        <Route  />
       </Routes>
     </Router>
   );

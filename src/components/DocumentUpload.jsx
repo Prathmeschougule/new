@@ -118,7 +118,7 @@ function DocumentUpload({ userId }) {
   };
 
   return (
-    <div className='document-upload-container '>
+    <div className='document-upload-container'>
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         {/* Title */}
         <div>

@@ -16,8 +16,7 @@ function AdminDocuments() {
         }
       })
       .catch(err => console.error(err));
-  }, [subcategoryId]);
-   
+  }, [subcategoryId]);  
   return (
     <div className="p-4 dash-bord">
       {/* <h2 className="text-xl font-bold mb-4">Documents for Subcategory ID: {subcategoryId}</h2> */}
@@ -37,8 +36,8 @@ function AdminDocuments() {
                 {/* <td className='border px-4 py-2'>{doc.id}</td> */}
                 <td className='border px-4 py-2'>{doc.name}</td>
                 <td className='border px-4 py-2'>{doc.created_at}</td>
-                <td className='border px-4 py-2'>
-                  <a href={`http://localhost/ProjectFile/backend/download.php?id=${doc.id}`} className="text-blue-600 underline">
+                <td className='border px-4 py-2 '>
+                  <a href={`http://localhost/ProjectFile/backend/download.php?id=${doc.id}`} className="text-blue-600 underline pointer-coarse">
                     Download
                   </a>
                 </td>
